@@ -1,5 +1,5 @@
 # source: https://eu1.prisma.sh/laila/sick-fits/dev
-# timestamp: Fri Feb 08 2019 20:56:25 GMT+0300 (Arabian Standard Time)
+# timestamp: Mon Apr 08 2019 13:17:27 GMT+0300 (Arabian Standard Time)
 
 type AggregateItem {
   count: Int!
@@ -39,6 +39,7 @@ type ItemConnection {
 }
 
 input ItemCreateInput {
+  id: ID
   title: String!
   description: String!
   image: String
@@ -522,6 +523,7 @@ type UserConnection {
 }
 
 input UserCreateInput {
+  id: ID
   name: String!
   email: String!
   password: String!

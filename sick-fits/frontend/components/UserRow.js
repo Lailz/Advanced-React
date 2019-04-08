@@ -6,6 +6,7 @@ import SickButton from "./styles/SickButton";
 import PropTypes from "prop-types";
 
 import { UPDATE_PERMISSIONS_MUTATION } from "./Permissions";
+
 class UserRow extends Component {
   static propTypes = {
     user: PropTypes.shape({
@@ -20,7 +21,7 @@ class UserRow extends Component {
     permissions: this.props.user.permissions
   };
 
-  handlePermissionChange = event => {
+  handlePermissionChange = (event, updatePermissions) => {
     const checkbox = event.target;
     let updatedPermissions = [...this.state.permissions];
     if (checkbox.checked) {
@@ -30,7 +31,7 @@ class UserRow extends Component {
         permission => permission !== checkbox.value
       );
     }
-    this.setState({ permissions: updatedPermissions });
+    this.setState({ permissions: updatedPermissions }, updatePermissions); // call updatePermissions function AFTER setting state
   };
 
   render() {
@@ -63,7 +64,9 @@ class UserRow extends Component {
                       type="checkbox"
                       checked={this.state.permissions.includes(permission)}
                       value={permission}
-                      onChange={this.handlePermissionChange}
+                      onChange={e =>
+                        this.handlePermissionChange(e, updatePermissions)
+                      }
                     />
                   </label>
                 </td>

@@ -174,21 +174,18 @@ const Mutations = {
       info
     );
     hasPermission(currentUser, ["ADMIN", "PERMISSIONUPDATE"]);
-    return (
-      ctx.db,
-      mutation.updateUser(
-        {
-          data: {
-            permissions: {
-              set: args.permissions
-            }
-          },
-          where: {
-            id: args.userId
+    return ctx.db.mutation.updateUser(
+      {
+        data: {
+          permissions: {
+            set: args.permissions
           }
         },
-        info
-      )
+        where: {
+          id: args.userId
+        }
+      },
+      info
     );
   }
 };
