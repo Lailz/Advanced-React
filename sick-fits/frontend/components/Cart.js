@@ -9,6 +9,7 @@ import Supreme from "./styles/Supreme";
 import CloseButton from "./styles/CloseButton";
 import CartItem from "./CartItem";
 import calcTotalPrice from "../lib/calcTotalPrice";
+import TakeMyMoney from "./TakeMyMoney";
 
 const LOCAL_STATE_QUERY = gql`
   query {
@@ -56,7 +57,11 @@ const Cart = props => {
             </ul>
             <footer>
               <p>{calcTotalPrice(me.cart)} KD</p>
-              <SickButton>Checkout</SickButton>
+              {me.cart.length && (
+                <TakeMyMoney>
+                  <SickButton>Checkout</SickButton>
+                </TakeMyMoney>
+              )}
             </footer>
           </CartStyles>
         );
